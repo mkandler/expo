@@ -173,8 +173,11 @@ public class BillingManager implements PurchasesUpdatedListener {
           }
         }
 
-        // false will be the default, unless true is passed
-        purchaseParams.setVrPurchaseFlow(isVrPurchaseFlow);
+        // Method is missing in Google Play v6
+        if (isVrPurchaseFlow == true) {
+          // false will be the default, unless true is passed
+          purchaseParams.setVrPurchaseFlow(isVrPurchaseFlow);
+        }
 
         mBillingClient.launchBillingFlow(mActivity, purchaseParams.build());
       }
